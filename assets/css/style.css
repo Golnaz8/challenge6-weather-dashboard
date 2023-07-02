@@ -1,0 +1,21 @@
+/* .left-margin {
+    margin-left: 20%;
+} */
+
+
+.left {
+    text-align: start;
+}
+
+
+.border {
+    border: 3px solid black;
+    margin: 10px;
+    margin-right: 1%;
+}
+
+
+.container-width {
+    width: 100%;
+}
+
