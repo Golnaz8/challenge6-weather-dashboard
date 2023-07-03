@@ -87,7 +87,7 @@ function todayWeather(cityName) {
       return response.json();
     })
     .then(function (data) {
-      cityNameEl.textContent = `${cityName}  ${data.weather[0].main}   ${date}`;
+      cityNameEl.textContent = `${cityName}     (${date})     ${data.weather[0].main}`;
       console.log(data);
       tempEl.textContent = `Temp: ${data.main.temp} C`;
       windEl.textContent = `Wind speed: ${data.wind.speed} MPH`;
@@ -111,7 +111,7 @@ function forecastWeather(cityName){
       j=0;
      for (var i = 7; i < data.list.length; i+=8) {
       console.log(data.list[i].dt_txt);
-      futureDateEl[j].textContent = data.list[i].dt_txt;
+      futureDateEl[j].textContent = `${data.list[i].dt_txt}  ${data.list[i].weather[0].main}`;
       futureTempEl[j].textContent = `temp: ${data.list[i].main.temp} C`;
       futureWindEl[j].textContent = `wind: ${data.list[i].wind.speed} MPH`;
       futureHumidityEl[j].textContent = `humidity:${data.list[i].main.humidity} %`;
