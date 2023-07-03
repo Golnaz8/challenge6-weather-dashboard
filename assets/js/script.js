@@ -10,15 +10,17 @@ var futureTempEl = document.getElementsByClassName("future-temp");
 var futureWindEl = document.getElementsByClassName("future-wind");
 var futureHumidityEl = document.getElementsByClassName("future-humidity");
 var bodyEl = document.querySelector("#custom-body");
+
 // var customBtnEl = document.querySelector(".custom-btn");
 var newBtnEl = document.querySelector("#new-btn");
 
+//information about curretn date
 var today = dayjs();
 var date = today.format("DD-MMM-YYYY");
 
 var allCities = [];
 
-
+//function in the first load to read data from local storage and show on screen
 function firstLoadRender() {
     var cityInput = localStorage.getItem("cityName");
     allCities = cityInput.split(',');
@@ -34,7 +36,7 @@ function firstLoadRender() {
     }
 }
 
-
+//function to read new data from local storage and display it on screen and update local storage
 function renderSaveCities() {
     cityInputEl.value= "";
     var cityInput = localStorage.getItem("cityName");
@@ -49,7 +51,6 @@ function renderSaveCities() {
     console.log(differ);
     console.log(check);                 
     if (!check) {
-
         allCities.push(differ);
         console.log(allCities);
     var tag = document.createElement("a");
@@ -63,7 +64,7 @@ function renderSaveCities() {
     localStorage.setItem("cityName", stringAllCities);
 }
 
-
+//function to read the data that user inputs and save it in local storage. it calls function to fetch data from api
 function activateSearchBtn(){
     var cityName = cityInputEl.value;
     cityName = cityName.toUpperCase();
@@ -76,7 +77,7 @@ function activateSearchBtn(){
     forecastWeather(cityName);
 }
 
-
+//function to fetch current day weather from weather API.
 function todayWeather(cityName) {
     const todayBaseUrl = 'http://api.openweathermap.org/data/2.5/weather';
     const todayUpdatedUrl = `${todayBaseUrl}?q=${encodeURIComponent(cityName)}&cnt=1&units=metric&appid=670f2a326654e8e4ee66af45094f3c93`;
@@ -95,7 +96,7 @@ function todayWeather(cityName) {
     });
 }
 
-
+//function to fetch 5 days forecast from weather API.
 function forecastWeather(cityName){
     const baseUrl = 'http://api.openweathermap.org/data/2.5/forecast';
     const updatedUrl = `${baseUrl}?q=${encodeURIComponent(cityName)}&cnt=54&units=metric&appid=670f2a326654e8e4ee66af45094f3c93`;
@@ -124,7 +125,7 @@ function forecastWeather(cityName){
 // Add an event listener to the search button
 searchBtnEl.addEventListener('click', activateSearchBtn);
 
-
+//Add an event listener to the previous city search button which added dynamically.
 newBtnEl.addEventListener("click", function(event) {
     var element = event.target;
     if (element.matches("button") === true) {
@@ -135,5 +136,5 @@ newBtnEl.addEventListener("click", function(event) {
     }
 });
 
-
+//function to load page in the begining
 firstLoadRender();
