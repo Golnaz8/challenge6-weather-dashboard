@@ -29,9 +29,12 @@ THEN I am again presented with current and future conditions for that city
 ## Mock-Up
 
 The following screenshot shows the web application's appearance and functionality:
+![image](https://github.com/Golnaz8/challenge6-weather-dashboard/assets/133593128/3f256802-2548-412e-91e7-d36076b765f1)
+
 
 
 ## Github pages link
+https://golnaz8.github.io/challenge6-weather-dashboard/
 
 
 
