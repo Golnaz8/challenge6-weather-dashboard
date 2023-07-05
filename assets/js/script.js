@@ -99,7 +99,7 @@ function activateSearchBtn() {
 
 //function to fetch current day weather from weather API.
 function todayWeather(cityName) {
-  const todayBaseUrl = 'http://api.openweathermap.org/data/2.5/weather';
+  const todayBaseUrl = 'https://api.openweathermap.org/data/2.5/weather';
   const todayUpdatedUrl = `${todayBaseUrl}?q=${encodeURIComponent(cityName)}&cnt=1&units=metric&appid=670f2a326654e8e4ee66af45094f3c93`;
 
   fetch(todayUpdatedUrl)
@@ -135,7 +135,7 @@ function todayWeather(cityName) {
 
 //function to fetch 5 days forecast from weather API.
 function forecastWeather(cityName) {
-  const baseUrl = 'http://api.openweathermap.org/data/2.5/forecast';
+  const baseUrl = 'https://api.openweathermap.org/data/2.5/forecast';
   const updatedUrl = `${baseUrl}?q=${encodeURIComponent(cityName)}&cnt=60&units=metric&appid=670f2a326654e8e4ee66af45094f3c93`;
 
   fetch(updatedUrl)
