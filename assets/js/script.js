@@ -57,7 +57,7 @@ function renderSaveCities() {
   var cityInput = localStorage.getItem("cityName");
   var arrayCityInput = cityInput.split(',');
 
-
+  //check if it is a reapeted city name, it doesn't add it again
   var difference = arrayCityInput.slice(-1);
   var differ = difference[0];
   var check = allCities.includes(differ);
@@ -108,7 +108,8 @@ function todayWeather(cityName) {
     })
     .then(function (data) {
       cityNameEl.textContent = `${cityName}     (${date})     ${data.weather[0].main}`;
-
+      
+      //check the id number to add class for those weather icon
       var weatherId = data.weather[0].id;
 
       if (200 <= weatherId && weatherId <= 232) {
@@ -148,7 +149,8 @@ function forecastWeather(cityName) {
       for (var i = 6; i < data.list.length; i += 8) {
         console.log(data.list[i].dt_txt);
         futureDateEl[j].textContent = `${data.list[i].dt_txt}  ${data.list[i].weather[0].main}`;
-
+        
+        //check the id number to add class for those weather icon
         var weatherIdBox = data.list[i].weather[0].id;
         console.log(weatherIdBox);
         element = weatherIconEl[j];
@@ -194,9 +196,6 @@ function forecastWeather(cityName) {
           element.classList.add("fa-solid");
           element.classList.add("fa-sun");
         }
-        // // else {
-        // //   weatherIconEl[j].setAttribute("class","fa fa-solid fa-cloud-fog" )
-        //}
 
         futureTempEl[j].textContent = `temp: ${data.list[i].main.temp} C`;
         futureWindEl[j].textContent = `wind: ${data.list[i].wind.speed} MPH`;
