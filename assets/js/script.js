@@ -230,6 +230,7 @@ newBtnEl.addEventListener("click", function (event) {
   }
 });
 
+//function to remove all previous classes that we add dinamically to show the weather icon
 function refreshIcons() {
   var allClassesFirst = firstIconEl.className.split(" ");
   for (var i = allClassesFirst.length - 1; i >= 0; i--) {
