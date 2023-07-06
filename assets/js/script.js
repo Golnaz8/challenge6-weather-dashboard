@@ -12,6 +12,11 @@ var futureHumidityEl = document.getElementsByClassName("future-humidity");
 var bodyEl = document.querySelector("#custom-body");
 var iconEl = document.querySelector("#weather-icon");
 var weatherIconEl = document.getElementsByClassName("weather-icon-box");
+var firstIconEl = document.querySelector("#first-icon");
+var secondIconEl = document.querySelector("#second-icon");
+var thirdIconEl = document.querySelector("#third-icon");
+var forthIconEl =document.querySelector("#forth-icon");
+var fifthIconEl = document.querySelector("#fifth-icon"); 
 
 // var customBtnEl = document.querySelector(".custom-btn");
 var newBtnEl = document.querySelector("#new-btn");
@@ -52,7 +57,7 @@ function firstLoadRender() {
 
 //function to read new data from local storage and display it on screen and update local storage
 function renderSaveCities() {
-
+  
   cityInputEl.value = "";
   var cityInput = localStorage.getItem("cityName");
   var arrayCityInput = cityInput.split(',');
@@ -135,6 +140,7 @@ function todayWeather(cityName) {
 
 //function to fetch 5 days forecast from weather API.
 function forecastWeather(cityName) {
+  refreshIcons();
   const baseUrl = 'https://api.openweathermap.org/data/2.5/forecast';
   const updatedUrl = `${baseUrl}?q=${encodeURIComponent(cityName)}&cnt=60&units=metric&appid=670f2a326654e8e4ee66af45094f3c93`;
 
@@ -214,17 +220,57 @@ searchBtnEl.addEventListener('click', activateSearchBtn);
 //Add an event listener to the previous city search button which added dynamically.
 newBtnEl.addEventListener("click", function (event) {
   var element = event.target;
-  firstLoadRender();
-
-  if (element.matches("button") === true) {
+   firstLoadRender();
+   if (element.matches("button") === true) {
     var cityName = element.getAttribute("data-input");
     console.log(cityName);
+    
     todayWeather(cityName);
     forecastWeather(cityName);
   }
 });
 
+function refreshIcons() {
+  var allClassesFirst = firstIconEl.className.split(" ");
+  for (var i = allClassesFirst.length - 1; i >= 0; i--) {
+    var classNameOne = allClassesFirst[i];
+    if (classNameOne !== 'weather-icon-box') {
+      firstIconEl.classList.remove(classNameOne);
+    }
+  }
+  var allClassesSecond = secondIconEl.className.split(" ");
+  for (var i = allClassesSecond.length - 1; i >= 0; i--) {
+    var classNameTwo = allClassesSecond[i];
+    if (classNameTwo !== 'weather-icon-box') {
+      secondIconEl.classList.remove(classNameTwo);
+    }
+  }
+  var allClassesThird = thirdIconEl.className.split(" ");
+  for (var i = allClassesThird.length - 1; i >= 0; i--) {
+    var classNameThree = allClassesThird[i];
+    if (classNameThree !== 'weather-icon-box') {
+      thirdIconEl.classList.remove(classNameThree);
+    }
+  }
+  var allClassesForth = forthIconEl.className.split(" ");
+  for (var i = allClassesForth.length - 1; i >= 0; i--) {
+    var classNameFour = allClassesForth[i];
+    if (classNameFour !== 'weather-icon-box') {
+      forthIconEl.classList.remove(classNameFour);
+    }
+  }
+  var allClassesFifth = fifthIconEl.className.split(" ");
+  for (var i = allClassesFifth.length - 1; i >= 0; i--) {
+    var classNameFive = allClassesFifth[i];
+    if (classNameFive !== 'weather-icon-box') {
+      fifthIconEl.classList.remove(classNameFive);
+    }
+  }
+}
+
 //function to load page in the begining
 firstLoadRender();
+
+
 
 
